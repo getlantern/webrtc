@@ -304,10 +304,14 @@ func (t *ICETransport) setState(i ICETransportState) {
 	t.state.Store(i)
 }
 
-func (t *ICETransport) newEndpoint(f mux.MatchFunc) *mux.Endpoint {
+func (t *ICETransport) NewEndpoint(f mux.MatchFunc) *mux.Endpoint {
 	t.lock.Lock()
 	defer t.lock.Unlock()
 	return t.mux.NewEndpoint(f)
+}
+
+func (t *ICETransport) Bubba() {
+
 }
 
 func (t *ICETransport) ensureGatherer() error {

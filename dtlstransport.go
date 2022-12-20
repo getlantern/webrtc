@@ -289,8 +289,8 @@ func (t *DTLSTransport) Start(remoteParameters DTLSParameters) error {
 			return DTLSRole(0), nil, &rtcerr.InvalidStateError{Err: fmt.Errorf("%w: %s", errInvalidDTLSStart, t.state)}
 		}
 
-		t.srtpEndpoint = t.iceTransport.newEndpoint(mux.MatchSRTP)
-		t.srtcpEndpoint = t.iceTransport.newEndpoint(mux.MatchSRTCP)
+		t.srtpEndpoint = t.iceTransport.NewEndpoint(mux.MatchSRTP)
+		t.srtcpEndpoint = t.iceTransport.NewEndpoint(mux.MatchSRTCP)
 		t.remoteParameters = remoteParameters
 
 		cert := t.certificates[0]
@@ -317,7 +317,7 @@ func (t *DTLSTransport) Start(remoteParameters DTLSParameters) error {
 	}
 
 	var dtlsConn *dtls.Conn
-	dtlsEndpoint := t.iceTransport.newEndpoint(mux.MatchDTLS)
+	dtlsEndpoint := t.iceTransport.NewEndpoint(mux.MatchDTLS)
 	role, dtlsConfig, err := prepareTransport()
 	if err != nil {
 		return err
